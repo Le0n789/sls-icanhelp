@@ -18,7 +18,7 @@ function figmaAssetResolver() {
 
 export default defineConfig({
   // GitHub Pages 部署路径：仓库名
-  base: '/sls-Icanhelp/',
+  base: '/sls-icanhelp/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if
