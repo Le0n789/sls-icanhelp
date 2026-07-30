@@ -32,7 +32,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '1',
     title: '橘皮',
-    images: ['/defects/JuPi-1.png', '/defects/JuPi-2.png'],
+    images: ['/defects/JuPi-1.webp', '/defects/JuPi-2.webp'],
     category: '表面质量问题',
     symptoms: '零件表面出现坑洼不平的现象',
     causes: [
@@ -50,7 +50,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '2',
     title: '翘曲（笑脸型）',
-    images: ['/defects/QiaoQu_XiaoLianXing-1.png'],
+    images: ['/defects/QiaoQu_XiaoLianXing-1.webp'],
     category: '热变形问题',
     symptoms: '一般出现在长条形零件上，两端上翘，中部下沉的弯曲状。',
     causes: [
@@ -67,7 +67,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '3',
     title: '翘曲（对角线）',
-    images: ['/defects/QiaoQu_DuiJiaoXian-1.png', '/defects/QiaoQu_DuiJiaoXian-2.png', '/defects/QiaoQu_DuiJiaoXian-3.png'],
+    images: ['/defects/QiaoQu_DuiJiaoXian-1.webp', '/defects/QiaoQu_DuiJiaoXian-2.webp', '/defects/QiaoQu_DuiJiaoXian-3.webp'],
     category: '热变形问题',
     symptoms: '一般出现在盒装零件上，盒装零件沿底部的对角线成扭转状翘曲',
     causes: [
@@ -82,7 +82,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '4',
     title: '翘曲（部分区域变形）',
-    images: ['/defects/QiaoQu_BuFenQuYu_1.png'],
+    images: ['/defects/QiaoQu_BuFenQuYu_1.webp'],
     category: '热变形问题',
     symptoms: '零件大部分形状保持良好，某一部分出现变形',
     causes: [
@@ -96,7 +96,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '5',
     title: '错层',
-    images: ['/defects/CuoCeng_1.png', '/defects/CuoCeng_2.png'],
+    images: ['/defects/CuoCeng_1.webp', '/defects/CuoCeng_2.webp'],
     category: '打印设备/机械',
     symptoms: '零件打印位置与切片位置不符，发生了肉眼可见的错位',
     causes: [
@@ -112,7 +112,7 @@ const DEFECTS_DATA: DefectItem[] = [
     id: '6',
     title: '拼接错位',
     category: '激光/能量参数',
-    images: ['/defects/PinJieCuoWei-1.png'],
+    images: ['/defects/PinJieCuoWei-1.webp'],
     symptoms: '出现在多激光设备，零件处于多激光拼接区域，激光直接扫描位置与切片位置不符，造成拼接区域错位。',
     causes: [
       '激光设置的偏移量错误，导致多激光拼接时结合区域没有对齐形成错位'
@@ -125,7 +125,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '7',
     title: '开裂',
-    images: ['/defects/KaiLie-1.png'],
+    images: ['/defects/KaiLie-1.webp'],
     category: '热量/温度控制',
     symptoms: '多见于实心零件，零件表面有裂纹，严重的可能发生断裂',
     causes: [
@@ -139,7 +139,7 @@ const DEFECTS_DATA: DefectItem[] = [
   {
     id: '8',
     title: '特征缺失',
-    images: ['/defects/TeZhengQueShi-1.png'],
+    images: ['/defects/TeZhengQueShi-1.webp'],
     category: '模型/设计问题',
     symptoms: '多见于薄壁零件，零件特征缺失，没有打印。或是零件本身特征太小，在清理过程中破坏丢失。',
     causes: [
@@ -363,6 +363,7 @@ export function DefectCases() {
                                           src={withBase(currentSrc)}
                                           alt={`${defect.title}缺陷参考图 ${currentIdx + 1}`}
                                           className="h-full w-full object-cover cursor-zoom-in"
+                                          loading="lazy"
                                           onError={() => setImageErrors(prev => ({ ...prev, [defect.id]: true }))}
                                           onDoubleClick={() => setLightboxImage({ src: currentSrc, title: defect.title })}
                                           title="双击查看原图"
