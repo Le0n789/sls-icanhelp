@@ -1,86 +1,13 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Search, List, Filter, Info, Box, ChevronDown } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowLeft, Search, List, Filter, Info, Box, ChevronDown, Gauge } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { MATERIALS_DATA, ALL_BRANDS, ALL_MATERIAL_TYPES } from '../../data/materials';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-
-// 模拟材料数据
-const MATERIALS_DATA = [
-  {
-    id: '1',
-    name: 'PA 2200 (标准PA12)',
-    brand: 'EOS',
-    baseMaterial: '尼龙基材料',
-    density: '0.93',
-    color: '白色',
-    features: '综合性能优异，尺寸稳定性好，吸水率低。最常规且广泛使用的SLS材料。',
-    applications: '功能性验证原型，最终用途零件，复杂结构外壳，工装夹具。'
-  },
-  {
-    id: '2',
-    name: 'HP HR PA 11',
-    brand: 'HP',
-    baseMaterial: '尼龙基材料',
-    density: '1.04',
-    color: '白色',
-    features: '优异的抗冲击性和延展性，生物基环保材料，极佳的耐疲劳性能。',
-    applications: '耐摔/耐冲击零件，卡扣与活动铰链，汽车内饰组件，医疗康复护具。'
-  },
-  {
-    id: '3',
-    name: 'DuraForm GF (玻纤PA12)',
-    brand: '3DSystem',
-    baseMaterial: '高性能工程塑料',
-    density: '1.22',
-    color: '浅灰色',
-    features: '显著提高的刚度和热变形温度，极佳的机械尺寸稳定性，耐磨损。',
-    applications: '较高温度工作环境零件，高刚性结构支撑件，发动机舱周边零件。'
-  },
-  {
-    id: '4',
-    name: 'TPU 90A Powder',
-    brand: 'Formlabs',
-    baseMaterial: '弹性体',
-    density: '1.10',
-    color: '黑色',
-    features: '类橡胶高弹性（邵氏硬度约90A），极佳的耐磨性和抗撕裂性，柔韧弯曲不断。',
-    applications: '减震器，密封圈与垫垫，柔性软管，鞋底及运动护具，穿戴设备。'
-  },
-  {
-    id: '5',
-    name: 'Alumide (铝粉填充)',
-    brand: 'EOS',
-    baseMaterial: '高性能工程塑料',
-    density: '1.36',
-    color: '金属灰色',
-    features: '表面具有特殊的金属砂面质感，相比纯尼龙有更好的导热性，易于机械后加工。',
-    applications: '少量注塑模具嵌件，金属外观展示模型，需要精细钻孔和攻丝的夹具卡具。'
-  },
-  {
-    id: '6',
-    name: 'HP HR PA 12 GB',
-    brand: 'HP',
-    baseMaterial: '高性能工程塑料',
-    density: '1.30',
-    color: '深灰色',
-    features: '玻璃微珠填充的PA12，具有极高的刚度和尺寸稳定性，热变形表现出色。',
-    applications: '刚性要求极高的外壳、底座和工装夹具，长期负载零件。'
-  },
-  {
-    id: '7',
-    name: 'Precimid1172Pro (通用型尼龙12)',
-    brand: 'TPM3D(盈普)',
-    baseMaterial: '尼龙基材料',
-    density: '0.95',
-    color: '白色',
-    features: '表面光洁度高，细节展现优异，综合力学性能平衡，适合多种通用场景。',
-    applications: '手板模型验证，医疗辅具，电子外壳，教育与科研用途。'
-  }
-];
 
 export function MaterialDetails() {
   const navigate = useNavigate();
@@ -91,8 +18,8 @@ export function MaterialDetails() {
   const [expandedMaterials, setExpandedMaterials] = useState<Record<string, boolean>>({});
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
 
-  const brands = ['全部', 'EOS', 'HP', 'Formlabs', '3DSystem', 'TPM3D(盈普)'];
-  const materials = ['全部', '尼龙基材料', '高性能工程塑料', '弹性体'];
+  const brands = ALL_BRANDS;
+  const materials = ALL_MATERIAL_TYPES;
 
   const filteredMaterials = MATERIALS_DATA.filter(material => {
     const matchesSearch = material.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -162,95 +89,134 @@ export function MaterialDetails() {
 
           <div className="flex flex-col lg:flex-row gap-8 relative">
             <div className="flex-1 min-w-0">
-              {/* Table Container */}
-              <div className="rounded-2xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm text-gray-600 border-collapse whitespace-nowrap min-w-[800px]">
-                    <thead className="bg-gray-50/80 text-gray-900 border-b border-gray-200">
-                      <tr>
-                        <th className="px-6 py-4 font-semibold">所属品牌</th>
-                        <th className="px-6 py-4 font-semibold">材料名称</th>
-                        <th className="px-6 py-4 font-semibold">材料性质</th>
-                        <th className="px-6 py-4 font-semibold">材料颜色</th>
-                        <th className="px-6 py-4 font-semibold">烧结密度 (g/cm³)</th>
-                        <th className="px-6 py-4 font-semibold text-center">详情</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100 bg-white">
-                      {filteredMaterials.length === 0 ? (
-                        <tr>
-                          <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
-                            未找到匹配的材料信息
-                          </td>
-                        </tr>
-                      ) : (
-                        filteredMaterials.map((material) => (
-                          <React.Fragment key={material.id}>
-                            <tr className="hover:bg-gray-50/50 transition-colors group">
-                              <td className="px-6 py-4">
-                                <span className={cn(
-                                  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
-                                  material.brand === 'EOS' && "bg-blue-50 text-blue-700 border border-blue-200",
-                                  material.brand === 'HP' && "bg-sky-50 text-sky-700 border border-sky-200",
-                                  material.brand === 'Formlabs' && "bg-purple-50 text-purple-700 border border-purple-200",
-                                  material.brand === '3DSystem' && "bg-rose-50 text-rose-700 border border-rose-200",
-                                  material.brand === 'TPM3D(盈普)' && "bg-amber-50 text-amber-700 border border-amber-200",
-                                )}>
+
+              {/* Card Grid */}
+              {filteredMaterials.length === 0 ? (
+                <div className="flex h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-white">
+                  <Search className="mb-4 h-10 w-10 text-gray-300" />
+                  <p className="text-gray-500">没有找到匹配的材料信息</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
+                  {filteredMaterials.map((material) => {
+                    const materialStyle = (() => {
+                      switch (material.baseMaterial) {
+                        case '尼龙基材料': return 'bg-blue-50 text-blue-700';
+                        case '高性能工程塑料': return 'bg-rose-50 text-rose-700';
+                        case '弹性体': return 'bg-amber-50 text-amber-700';
+                        default: return 'bg-gray-50 text-gray-700';
+                      }
+                    })();
+
+                    return (
+                      <div
+                        key={material.id}
+                        className={cn(
+                          "rounded-xl border bg-white shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden",
+                          expandedMaterials[material.id] 
+                            ? "border-blue-300 col-span-full" 
+                            : "border-gray-200"
+                        )}
+                      >
+                        {/* Card Header */}
+                        <button
+                          onClick={() => toggleMaterial(material.id)}
+                          className="w-full text-left p-5 focus:outline-none"
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0 flex-1">
+                              <h3 className="text-base font-bold text-gray-900 leading-snug mb-3">
+                                {material.name}
+                              </h3>
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-xs text-gray-400 font-medium">
                                   {material.brand}
                                 </span>
-                              </td>
-                          <td className="px-6 py-4 font-bold text-gray-900">{material.name}</td>
-                          <td className="px-6 py-4 font-medium">
-                            <span className={cn(
-                              "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs",
-                              material.baseMaterial === '尼龙基材料' && "bg-blue-50 text-blue-700",
-                              material.baseMaterial === '高性能工程塑料' && "bg-rose-50 text-rose-700",
-                              material.baseMaterial === '弹性体' && "bg-amber-50 text-amber-700"
-                            )}>
-                              {material.baseMaterial}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4">{material.color}</td>
-                              <td className="px-6 py-4 font-medium">{material.density}</td>
-                              <td className="px-6 py-4 text-center">
-                                <button
-                                  onClick={() => toggleMaterial(material.id)}
-                                  className="inline-flex items-center justify-center p-2 rounded-md hover:bg-blue-50 text-gray-400 hover:text-blue-600 transition-colors"
-                                  title={expandedMaterials[material.id] ? "收起详情" : "展开详情"}
-                                >
-                                  <ChevronDown className={cn("h-5 w-5 transition-transform duration-200", expandedMaterials[material.id] ? "rotate-180" : "")} />
-                                </button>
-                              </td>
-                            </tr>
-                            {expandedMaterials[material.id] && (
-                              <tr className="bg-gray-50/30">
-                                <td colSpan={6} className="px-6 py-4 pb-6">
-                                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
-                                    <div className="flex items-start gap-2">
-                                      <Info className="h-5 w-5 text-blue-500 shrink-0 mt-0.5" />
-                                      <div>
-                                        <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-1">材料特性</h4>
-                                        <p className="text-sm text-gray-600 leading-relaxed whitespace-normal break-words">{material.features}</p>
-                                      </div>
-                                    </div>
-                                    <div className="flex items-start gap-2">
-                                      <Box className="h-5 w-5 text-indigo-500 shrink-0 mt-0.5" />
-                                      <div>
-                                        <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-1">推荐应用场景</h4>
-                                        <p className="text-sm text-gray-600 leading-relaxed whitespace-normal break-words">{material.applications}</p>
-                                      </div>
+                                <span className={cn(
+                                  "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+                                  materialStyle
+                                )}>
+                                  {material.baseMaterial}
+                                </span>
+                              </div>
+                            </div>
+                            <ChevronDown className={cn(
+                              "h-5 w-5 text-gray-400 shrink-0 mt-1 transition-transform duration-200",
+                              expandedMaterials[material.id] ? "rotate-180 text-blue-500" : ""
+                            )} />
+                          </div>
+                        </button>
+
+                        {/* Expanded Details */}
+                        {expandedMaterials[material.id] && (
+                          <div className="px-5 pb-5 pt-0 border-t border-gray-100">
+                            <div className="pt-4 space-y-4">
+                              {/* Color + Density summary */}
+                              <div className="flex items-center gap-4 text-sm">
+                                <div className="flex items-center gap-1.5 text-gray-500">
+                                  <span className="inline-block w-3 h-3 rounded-full border border-gray-300" style={{ backgroundColor: material.color === '白色' ? '#f9fafb' : material.color === '浅灰色' ? '#d1d5db' : material.color === '深灰色' ? '#6b7280' : material.color === '金属灰色' ? '#9ca3af' : '#111827' }} />
+                                  {material.color}
+                                </div>
+                                <span className="text-gray-300">|</span>
+                                <span className="text-gray-500">
+                                  密度 <strong className="text-gray-700">{material.density} g/cm³</strong>
+                                </span>
+                              </div>
+
+                              {/* Features */}
+                              <div className="flex items-start gap-2">
+                                <Info className="h-4 w-4 text-blue-500 shrink-0 mt-0.5" />
+                                <div>
+                                  <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-1">材料特性</h4>
+                                  <p className="text-sm text-gray-600 leading-relaxed">{material.features}</p>
+                                </div>
+                              </div>
+
+                              {/* Applications */}
+                              <div className="flex items-start gap-2">
+                                <Box className="h-4 w-4 text-indigo-500 shrink-0 mt-0.5" />
+                                <div>
+                                  <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-1">推荐应用场景</h4>
+                                  <p className="text-sm text-gray-600 leading-relaxed">{material.applications}</p>
+                                </div>
+                              </div>
+
+                              {/* Performance Properties */}
+                              {material.properties && material.properties.length > 0 && (
+                                <div className="flex items-start gap-2">
+                                  <Gauge className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                                  <div className="flex-1 min-w-0">
+                                    <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-2">性能指标</h4>
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+                                      {material.properties.map((prop, idx) => (
+                                        <div
+                                          key={idx}
+                                          className="rounded-lg bg-gray-50 px-3 py-2 text-center border border-gray-100"
+                                        >
+                                          <div className="text-base font-bold text-gray-900 leading-none mb-0.5">
+                                            {prop.value}
+                                            <span className="text-[11px] font-normal text-gray-400 ml-0.5">{prop.unit}</span>
+                                          </div>
+                                          <div className="text-[11px] text-gray-600 leading-tight">{prop.label}</div>
+                                          {prop.testMethod && (
+                                            <div className="text-[10px] text-gray-400 leading-tight mt-0.5 font-mono tracking-tight">
+                                              {prop.testMethod}
+                                            </div>
+                                          )}
+                                        </div>
+                                      ))}
                                     </div>
                                   </div>
-                                </td>
-                              </tr>
-                            )}
-                          </React.Fragment>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
-              </div>
+              )}
             </div>
 
             {/* Right Column (Sidebar) */}
