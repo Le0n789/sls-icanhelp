@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowLeft, Search, List, Filter, Info, Box, ChevronDown, Gauge } from 'lucide-react';
+import { useState, Fragment } from 'react';
+import { ArrowLeft, Search, List, Filter, Info, Box, ChevronDown, Gauge, ArrowUpDown, Rows2, Rows3 } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -17,6 +17,8 @@ export function MaterialDetails() {
   const [activeMaterial, setActiveMaterial] = useState('全部');
   const [expandedMaterials, setExpandedMaterials] = useState<Record<string, boolean>>({});
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+  const [sortBy, setSortBy] = useState<'default' | 'brand' | 'material' | 'density-asc' | 'density-desc'>('default');
+  const [gridCols, setGridCols] = useState<2 | 3>(3);
 
   const brands = ALL_BRANDS;
   const materials = ALL_MATERIAL_TYPES;
@@ -33,6 +35,16 @@ export function MaterialDetails() {
     }
 
     return matchesSearch && matchesCategory;
+  });
+
+  const sortedMaterials = [...filteredMaterials].sort((a, b) => {
+    switch (sortBy) {
+      case 'brand': return a.brand.localeCompare(b.brand, 'zh');
+      case 'material': return a.baseMaterial.localeCompare(b.baseMaterial, 'zh');
+      case 'density-asc': return parseFloat(a.density) - parseFloat(b.density);
+      case 'density-desc': return parseFloat(b.density) - parseFloat(a.density);
+      default: return 0;
+    }
   });
 
   const toggleMaterial = (id: string) => {
@@ -90,15 +102,85 @@ export function MaterialDetails() {
           <div className="flex flex-col lg:flex-row gap-8 relative">
             <div className="flex-1 min-w-0">
 
+              {/* Control Bar */}
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gray-200 bg-white px-4 py-2.5 shadow-sm">
+                {/* Sort */}
+                <div className="flex items-center gap-2">
+                  <ArrowUpDown className="h-4 w-4 text-gray-400" />
+                  <span className="text-xs font-medium text-gray-500">排序</span>
+                  <div className="flex gap-1">
+                    {([
+                      { key: 'default', label: '默认' },
+                      { key: 'brand', label: '品牌' },
+                      { key: 'material', label: '材质' },
+                      { key: 'density-asc', label: '密度↑' },
+                      { key: 'density-desc', label: '密度↓' },
+                    ] as const).map(opt => (
+                      <button
+                        key={opt.key}
+                        onClick={() => setSortBy(opt.key)}
+                        className={cn(
+                          "px-2.5 py-1 text-xs font-medium rounded-md transition-colors",
+                          sortBy === opt.key
+                            ? "bg-blue-50 text-blue-700"
+                            : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                        )}
+                      >
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right: count + columns */}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-gray-400">
+                    共 {sortedMaterials.length} 种材料
+                  </span>
+                  <div className="h-4 w-px bg-gray-200" />
+                  <div className="flex gap-0.5 rounded-md bg-gray-100 p-0.5">
+                    <button
+                      onClick={() => setGridCols(2)}
+                      className={cn(
+                        "flex items-center gap-1 px-2 py-1 text-xs font-medium rounded transition-colors",
+                        gridCols === 2
+                          ? "bg-white text-blue-600 shadow-sm"
+                          : "text-gray-500 hover:text-gray-700"
+                      )}
+                      title="2列布局"
+                    >
+                      <Rows2 className="h-3.5 w-3.5" />
+                    </button>
+                    <button
+                      onClick={() => setGridCols(3)}
+                      className={cn(
+                        "flex items-center gap-1 px-2 py-1 text-xs font-medium rounded transition-colors",
+                        gridCols === 3
+                          ? "bg-white text-blue-600 shadow-sm"
+                          : "text-gray-500 hover:text-gray-700"
+                      )}
+                      title="3列布局"
+                    >
+                      <Rows3 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               {/* Card Grid */}
-              {filteredMaterials.length === 0 ? (
+              {sortedMaterials.length === 0 ? (
                 <div className="flex h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-white">
                   <Search className="mb-4 h-10 w-10 text-gray-300" />
                   <p className="text-gray-500">没有找到匹配的材料信息</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 items-start">
-                  {filteredMaterials.map((material) => {
+                <div className={cn(
+                  "grid gap-4 items-start",
+                  gridCols === 2
+                    ? "grid-cols-1 sm:grid-cols-2"
+                    : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                )}>
+                  {sortedMaterials.map((material, idx) => {
                     const materialStyle = (() => {
                       switch (material.baseMaterial) {
                         case '尼龙基材料': return 'bg-blue-50 text-blue-700';
@@ -108,9 +190,28 @@ export function MaterialDetails() {
                       }
                     })();
 
+                    const prev = idx > 0 ? sortedMaterials[idx - 1] : null;
+                    const isNewGroup = sortBy !== 'default' && (
+                      !prev || (
+                        sortBy === 'brand'
+                          ? material.brand !== prev.brand
+                          : material.baseMaterial !== prev.baseMaterial
+                      )
+                    );
+
                     return (
+                      <Fragment key={material.id}>
+                        {isNewGroup && (
+                          <div className="col-span-full mt-2">
+                            <div className="flex items-center gap-3">
+                              <span className="text-xs font-semibold text-gray-400 whitespace-nowrap">
+                                {sortBy === 'brand' ? material.brand : material.baseMaterial}
+                              </span>
+                              <div className="h-px flex-1 bg-gray-100" />
+                            </div>
+                          </div>
+                        )}
                       <div
-                        key={material.id}
                         className={cn(
                           "rounded-xl border bg-white shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden",
                           expandedMaterials[material.id] 
@@ -213,6 +314,7 @@ export function MaterialDetails() {
                           </div>
                         )}
                       </div>
+                      </Fragment>
                     );
                   })}
                 </div>
