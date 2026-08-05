@@ -54,30 +54,30 @@ const TOOLS = [
   },
   {
     id: '3',
-    title: '打印材料对比',
-    description: '横向对比多种烧结材料的关键性能指标，助您选择最适合的打印材料。',
-    categoryId: 'material',
-    icon: ArrowRightLeft,
-    color: 'bg-indigo-500/10 text-indigo-600',
-    path: '/material-comparison'
-  },
-  {
-    id: '4',
     title: '零件缺陷案例',
-    description: '汇集常见的SLS打印缺陷（如翘曲、层间开裂、表面粗糙）及原因分析与解决方案。',
+    description: '汇集常见的SLS打印缺陷（如翘曲、开裂、变形）及原因分析与解决方案。',
     categoryId: 'cases',
     icon: AlertTriangle,
     color: 'bg-rose-500/10 text-rose-600',
     path: '/defect-cases'
   },
   {
-    id: '5',
+    id: '4',
     title: '零件后处理案例',
     description: '展示喷砂、染色、化学蒸汽平滑等不同后处理工艺在尼龙零件上的实际效果。',
     categoryId: 'cases',
     icon: Droplets,
     color: 'bg-cyan-500/10 text-cyan-600',
     path: '/post-processing-cases'
+  },
+  {
+    id: '5',
+    title: '零件后处理缺陷案例',
+    description: '汇集的SLS打印零件后处理缺陷的原因分析与解决方案。',
+    categoryId: 'cases',
+    icon: ArrowRightLeft,
+    color: 'bg-indigo-500/10 text-indigo-600',
+    path: '/material-comparison'
   },
   {
     id: '6',
