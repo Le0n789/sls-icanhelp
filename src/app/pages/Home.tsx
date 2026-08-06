@@ -13,7 +13,7 @@ import {
   Image as ImageIcon,
   Heart,
   List,
-  ArrowRightLeft,
+  ScanSearch,
   AlertTriangle
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
@@ -75,14 +75,14 @@ const TOOLS = [
     title: '零件后处理缺陷案例',
     description: '汇集的SLS打印零件后处理缺陷的原因分析与解决方案。',
     categoryId: 'cases',
-    icon: ArrowRightLeft,
+    icon: ScanSearch,
     color: 'bg-indigo-500/10 text-indigo-600',
-    path: '/material-comparison'
+    path: '/post-processing-defect-cases'
   },
   {
     id: '6',
-    title: '各材料打印零件案例',
-    description: '浏览不同材料打印出的行业应用零件实拍图与案例解析。',
+    title: '面向SLS零件设计参考',
+    description: '对使用SLS工艺生产的零件提供设计参考,包括零件特征尺寸、材料选择、工艺选择等',
     categoryId: 'cases',
     icon: Box,
     color: 'bg-purple-500/10 text-purple-600',
@@ -279,6 +279,16 @@ export function Home() {
                 })}
               </div>
             )}
+
+          {/* 页脚声明 */}
+          <div className="mt-12 border-t border-gray-200 pt-6 text-center">
+            <p className="text-xs text-gray-400 leading-relaxed">
+              本工具站提供的信息仅供参考，实际生产或操作中受到多重因素影响，请依据实际情况进行生产
+            </p>
+            <p className="mt-2 text-xs text-gray-400 leading-relaxed">
+              本网站的开发、信息编撰，收录均由本人 Le0n789(李嘉濠) 完成，同时也感谢在本网站开发过程中对本人给予帮助建议的人 — 2026-08-06 Le0n789 留
+            </p>
+          </div>
           </div>
         </main>
       </div>
