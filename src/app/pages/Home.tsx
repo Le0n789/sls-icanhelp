@@ -82,7 +82,7 @@ const TOOLS = [
   {
     id: '6',
     title: '面向SLS零件设计参考',
-    description: '对使用SLS工艺生产的零件提供设计参考,包括零件特征尺寸、材料选择、工艺选择等',
+    description: '对使用SLS工艺生产的零件提供设计参考，包括特征尺寸、结构设计、排版工艺、后处理余量等准则。',
     categoryId: 'cases',
     icon: Box,
     color: 'bg-purple-500/10 text-purple-600',

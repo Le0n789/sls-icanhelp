@@ -6,6 +6,7 @@ import { DefectCases } from './components/DefectCases';
 import { PlaceholderTool } from './components/PlaceholderTool';
 import { PostProcessingCases } from './components/PostProcessingCases';
 import { PostProcessingDefectCases } from './components/PostProcessingDefectCases';
+import { DesignReference } from './components/DesignReference';
 
 export default function App() {
   return (
@@ -17,7 +18,7 @@ export default function App() {
         <Route path="/post-processing-defect-cases" element={<PostProcessingDefectCases />} />
         <Route path="/defect-cases" element={<DefectCases />} />
         <Route path="/post-processing-cases" element={<PostProcessingCases />} />
-        <Route path="/print-cases" element={<PlaceholderTool title="各材料打印零件案例" />} />
+        <Route path="/print-cases" element={<DesignReference />} />
       </Routes>
     </BrowserRouter>
   );
