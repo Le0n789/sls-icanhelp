@@ -54,6 +54,9 @@ const POST_PROCESS_DEFECTS_DATA: PostProcessCategory[] = [
           '对于严重过度区域起皮的情况下，可以使用美工刀/笔刀、手术刀等方式进行切除，然后使用砂纸手动磨除熏抛表层',
           '对于轻微过度，仅折角处的出现轻微反应，在客户接受的情况下无需处理',
           '对于严重过度的零件且表面异型，此时恢复难度过大，建议重打'
+        ],
+        images: [
+          'PostProcessingDefect/XunZhengGuoDu-1.webp'
         ]
       },
       {
@@ -65,6 +68,10 @@ const POST_PROCESS_DEFECTS_DATA: PostProcessCategory[] = [
         ],
         prevention:[
           '重新调整参数/重新调整挂件位置进行二次熏抛'
+        ],
+        images: [
+          'PostProcessingDefect/XunZhengJiaoQian-1.webp',
+          'PostProcessingDefect/XunZhengJiaoQian-2.webp'
         ]
       },
       {
@@ -78,6 +85,11 @@ const POST_PROCESS_DEFECTS_DATA: PostProcessCategory[] = [
           '对于溶液无法进入零件部分区域导致熏蒸不足，可尝试调整零件挂件方向让化学蒸汽接触',
           '对于零件自身厚度相差过大，只能确保关键位置的熏蒸，建议尝试手动打磨较薄的区域使少溶剂也能对表面进行较高质量平滑',
           '可以尝试修改设备的参数，调整溶剂温度，舱体压力等参数以改善熏蒸效果'
+        ],
+        images: [
+          'PostProcessingDefect/XunZhengBuJun-1.webp',
+          'PostProcessingDefect/XunZhengBuJun-2.webp',
+          'PostProcessingDefect/XunZhengBuJun-3.webp' 
         ]
       },
     ],
