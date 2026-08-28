@@ -35,6 +35,11 @@ const DESIGN_DATA: DesignItem[] = [
     notes: '对于SLS工艺来说，由于工艺特性有一个最小的打印范围，一般是0.5mm到0.8mm，在这个范围内打印的才能承受喷砂清理。\
             零件内部的间隙最小在1.2mm或以上，过窄的间隙两侧的粉末会被激光热量烧结固化，即便拿工具也很难清理干净。综上在\
             零件设计时需要考虑工艺精度。',
+    images:[
+      'designReference/ZuiXiaoTeZheng-1.webp',
+      'designReference/ZuiXiaoTeZheng-2.webp',
+      'designReference/ZuiXiaoTeZheng-3.webp'
+    ]
   },
 
   {
@@ -46,7 +51,9 @@ const DESIGN_DATA: DesignItem[] = [
             给零件自身减重的同时减少了打印时的热量堆积，有效减弱因为热量导致的零件变形开裂等问题。同时对于打印完成需要等待散热清粉的零件，\
             蜂窝裸漏的蜂窝填充结构可以增大零件的表面积，对于零件散热有极大的帮助。对于因为零件散热时导致的冷热不均引起的变形问题同样有明显的减缓作用。',
     images:[
-      'designReference/FengWoTianChong-2.jpg'
+      'designReference/FengWoTianChong-1.webp',
+      'designReference/FengWoTianChong-2.webp',
+      'designReference/FengWoTianChong-3.webp'
     ]        
   },
 
@@ -58,6 +65,12 @@ const DESIGN_DATA: DesignItem[] = [
     notes: '在SLS工艺中，打印件均匀的厚度代表打印时候的热场趋于稳定，零件内部应力处于较低水平不容易出现变形开裂的情况。\
             同时均匀的厚度能够更好的控制尺寸，尼龙打印后会出现收缩的现象，零件尺寸变小，对于均匀的厚度来说，整个零件的缩水更容易预测和控制，\
             同时可以减少局部因收缩导致的凹陷。最后是厚度变化均匀，这样零件内部应力也是均匀过度，避免出现应力集中，进而在应力集中的位置受外力碰撞/自行裂开。',
+    images:[
+      'designReference/BiHouJunYun-1.webp',
+      'designReference/BiHouJunYun-2.webp',
+      'designReference/BiHouJunYun-3.webp',
+      'designReference/BiHouJunYun-4.webp'
+    ]
   },
 
   {
@@ -68,6 +81,10 @@ const DESIGN_DATA: DesignItem[] = [
     notes: '对于大体积的实心零件，如果不方便进行蜂窝填充的情况下可以对零件进行抽壳。抽壳可以不是壁厚完全一致的，\
             可以有厚度相差。主要目的是为了让零件内部形成空腔，减少扫描的面积，这样可以减弱橘皮和开裂的产生，同时抽壳情况下，\
             清粉孔是可选的。如果不开清粉孔可以保留内部粉末保证重量。如果需要开清粉孔清理，与蜂窝结构相比，清理的难度也比蜂窝结构简单很多。',
+    images:[
+      'designReference/ChouKe-1.webp',
+      'designReference/ChouKe-2.webp',
+    ]
   },
 
   {
@@ -77,6 +94,11 @@ const DESIGN_DATA: DesignItem[] = [
     guidelines: '零件内部有需要清理的空腔，且零件内部本身封闭程度高（全封闭或仅有少部分孔位）',
     notes: '对于零件内部有腔体的零件，在设计时规划好粉末排出的方法和路径，有助于零件减轻重量，减少打印的价格，\
             对于腔体内有洁净要求的零件更是决定零件是否可用的关键。对于大空腔零件至少2各有3mm或以上的对向排粉口，对于窄深槽喷砂无法有效清理，请扩大槽位。',
+    images:[
+      'designReference/FenMoQingChu-1.webp',
+      'designReference/FenMoQingChu-2.webp',
+      'designReference/FenMoQingChu-3.webp'
+    ]
   },
 
   {
@@ -87,6 +109,9 @@ const DESIGN_DATA: DesignItem[] = [
     notes: '对于SLS工艺，打印的零件体积越大越高，消耗的粉末越多，打印价格也就越高。对于体积过大的零件，\
             厂家难以拼单打印，这时候可以进行拆件，降低打印的费用。对于无法放入成型缸的零件也需要进行拆件才能正常打印。\
             对于大平板大长条这些零件，由于打印容易发生翘曲变形，适当进行拆分可以提升成品打印质量。',
+    images:[
+      'designReference/ChaiJian-1.webp'
+    ]
   },
 
   {
@@ -97,6 +122,10 @@ const DESIGN_DATA: DesignItem[] = [
     notes: '在打印时零件内部可能有较大的热应力，甚至于在初步散热阶段或打印时已经开始发生变形，在基础设计不容更改的情况下，\
             可以对零件添加加强筋，盒装零件可以在侧壁增加筋或是在开口处增加“裙边”，大平板可以增加蜂窝/网格/圆环等加强筋，\
             其他类型容易变形的零件可以根据实际情况增加保形肋。',
+    images:[
+      'designReference/JiaQiangJin-1.webp',
+      'designReference/JiaQiangJin-2.webp'
+    ]
   },
 
   {
@@ -106,6 +135,9 @@ const DESIGN_DATA: DesignItem[] = [
     guidelines: '需要后续进行打磨，切削，喷漆等后处理工艺的零件',
     notes: '对于相当多的零件来说，SLS打印仅仅是初步的成型手段，后续为了零件实际应用或外观等需求，SLS打印零件仍需要进行一个或以上的工序后处理。\
             对于需要切削打磨等减材加工，在数模上应该提前增加余量，对于需要喷漆（特别是涉及到装配）的零件，在数模上也应该减出余量保证零件的可装配性。',
+    images:[
+      'designReference/HouChuLiYuLiang-1.webp'
+    ]
   },
 ];
 

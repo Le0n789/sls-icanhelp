@@ -110,6 +110,9 @@ const POST_PROCESS_DEFECTS_DATA: PostProcessCategory[] = [
         prevention:[
           '更换设计或者更换螺母型号，重新评估镶嵌可能性',
           '若因为孔壁过薄无法进行热熔镶嵌，可以考虑进行镶嵌牙套，对于薄孔壁镶嵌牙套是一个不错的选择'
+        ],
+        images:[
+          'PostProcessingDefect/WuFaXiangQian-1.webp'
         ]
       },
       {
@@ -163,6 +166,12 @@ const POST_PROCESS_DEFECTS_DATA: PostProcessCategory[] = [
         ],
         prevention:[
           '在喷漆前建议先对零件进行打磨平整表面，在进一步补腻子填平表面的凹陷和针孔。同时确保涂装面清洁干净无异物，然后在进行喷漆工序'
+        ],
+        images:[
+          'PostProcessingDefect/QiMianZhiLiangCha-1.webp',
+          'PostProcessingDefect/QiMianZhiLiangCha-2.webp',
+          'PostProcessingDefect/QiMianZhiLiangCha-3.webp',
+          'PostProcessingDefect/QiMianZhiLiangCha-4.webp'
         ]
       },
       {
@@ -176,6 +185,9 @@ const POST_PROCESS_DEFECTS_DATA: PostProcessCategory[] = [
           '对尼龙零件喷涂前清洁好表面，做好相应的除油除污工作',
           '零件喷漆尽可能选择烤漆工艺，烤漆有较好的附着力',
           '喷漆工序最好细化，喷涂增加附着力的底漆，在面漆完成之后喷涂光油进行封闭和保护漆面'
+        ],
+        images:[
+          'PostProcessingDefect/DiaoQi-1.webp',
         ]
       },
       {
