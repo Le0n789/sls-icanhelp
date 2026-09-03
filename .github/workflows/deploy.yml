@@ -36,6 +36,15 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # 绑定自定义域名后，取消下一行注释（构建产物将以根路径 '/' 部署，配合 CNAME 文件）
+          # PAGES_BASE: /
+          PAGES_BASE: ${{ vars.PAGES_BASE }}
+
+      # GitHub Pages 不支持 SPA 路由回退：把 index.html 复制为 404.html，
+      # 用户直接访问/分享子页面链接（如 /cost-calculator）时不会 404
+      - name: SPA fallback (404.html)
+        run: cp dist/index.html dist/404.html
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4

@@ -17,8 +17,12 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  // GitHub Pages 部署路径：仓库名
-  base: '/sls-icanhelp/',
+  // GitHub Pages 部署路径：
+  // - 未绑定自定义域名时保持 '/sls-icanhelp/'（即 github.io 子路径访问）
+  // - 绑定自定义域名后，在仓库 Settings → Secrets → Actions 添加环境变量
+  //   或直接修改 deploy.yml 中 build 步骤为: npm run build -- --base=/
+  //   也可以把下面一行改为 base: '/'
+  base: process.env.PAGES_BASE || '/sls-icanhelp/',
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

@@ -10,7 +10,8 @@ import { DesignReference } from './components/DesignReference';
 
 export default function App() {
   return (
-    <BrowserRouter basename="/sls-icanhelp">
+    // basename 跟随 Vite 的 base 配置自动切换：当前为 /sls-icanhelp/，绑定自定义域名后构建时自动变为 /
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cost-calculator" element={<CostCalculator />} />
