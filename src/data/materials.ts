@@ -91,7 +91,8 @@ export const UNITS = {
   TEMP: '°C',
   KN_M: 'kN/m',
   NONE: '',
-  MM:'mm'
+  MM:'mm',
+  MM3: 'mm³'
 } as const;
 
 
@@ -803,8 +804,61 @@ export const MATERIALS_DATA: Material[] = [
     { label: '可燃性(60 秒点燃时间，测试通过)', value: '1.0/1.5/2.0', unit: 'mm', testMethod: 'CS 25 / JAR25 / FAR 25 § 25-853' },
     { label: '烟密度(测试通过)', value: '1.0/1.5/2.0', unit: UNITS.MM, testMethod: 'ABD 0031(问题:F),方法AITM 2.0007' },
     { label: '毒性(测试通过)', value: '1.0/1.5/2.0', unit:  UNITS.MM, testMethod: 'ABD 0031(问题:F),方法AITM 2.0007' },
-  ],
-},
+    ],
+  },
+
+  {
+  id: '30',
+  name: 'PA 3200 GF',
+  brand: BRANDS.EOS,
+  baseMaterial: MATERIAL_TYPES.NILONG,
+  density: '1.22',
+  color: '白色',
+  features: '高硬度，耐磨性，改善温度性能',
+  applications: '需要增强负载下刚性的机械部件，如外壳，需要增强耐磨性的重载部件，成型工具',
+  properties: [
+    { label: '拉伸模量(X/Y/Z 方向)', value: '3200/3200/2500', unit: UNITS.MPA, testMethod: 'ISO 527-1/-2' },
+    { label: '拉伸强度(X/Y/Z 方向)', value: '51/51/47', unit: UNITS.MPA, testMethod: 'ISO 527-1/-2' },
+    { label: '断裂应变(X/Y/Z 方向)', value: '9/9/5.5', unit: UNITS.PERCENT, testMethod: 'ISO 527-1/-2' },
+    { label: '弯曲模量(X 方向)', value: 2900, unit: UNITS.MPA, testMethod: 'ISO 178' },
+    { label: '挠曲强度(X 方向)', value: 73, unit: UNITS.MPA, testMethod: 'ISO 178' },
+    { label: '夏比冲击强度(+23°C)(X 方向)', value: 35, unit: UNITS.KJ_M2, testMethod: 'ISO 179' },
+    { label: '夏比缺口冲击强度(+23°C)(X 方向)', value: 5.4, unit: UNITS.KJ_M2, testMethod: 'ISO 179' },
+    { label: '伊佐德冲击强度(+23°C)(X 方向)', value: 21, unit: UNITS.KJ_M2, testMethod: 'ISO 179' },
+    { label: '伊佐德缺口冲击强度(+23°C)(X 方向)', value: 4.2, unit: UNITS.KJ_M2, testMethod: 'ISO 179' },
+    { label: '球压痕硬度(X 方向)', value: 98, unit: UNITS.MPA, testMethod: 'ISO 2039-1' },
+    { label: '邵氏 D 硬度(X 方向)', value: 80, unit: UNITS.NONE, testMethod: 'ISO 7619-1' },
+    { label: '负载 1.80 MPa时的挠度温度(X 方向)', value: 96, unit: UNITS.TEMP, testMethod: 'ISO 75-1/-2' },
+    { label: '负载 0.45 MPa时的挠度温度(X 方向)', value: 157, unit: UNITS.TEMP, testMethod: 'ISO 75-1/-2' },
+    ],
+  },
+
+  {
+    id: '31',
+    name: 'TPU 1301',
+    brand: BRANDS.EOS,
+    baseMaterial: MATERIAL_TYPES.TANXINGTI,
+    density: '1.11',
+    color: '白色',
+    features: '强大的复原力，良好的抗水解性，高紫外线稳定性，良好的减震性能，新粉添加率80%',
+    applications: '要求具有弹性性能的鞋类和生活用品部件，如手柄和鞋底；汽车和工业零部件，如管材、波纹管、密封件和垫圈；运动防护装备，如头盔衬垫',
+    properties: [
+      { label: '拉伸模量(X/Y/Z 方向)', value: 60, unit: UNITS.MPA, testMethod: 'ISO 527-1/-2' },
+      { label: '拉伸强度(X/Y/Z 方向)', value: '7/7/5', unit: UNITS.MPA, testMethod: 'ISO 527-1/-2' },
+      { label: '断裂应变(X/Y/Z 方向)', value: '250/250/90', unit: UNITS.PERCENT, testMethod: 'ISO 527-1/-2' },
+      { label: '断裂应变、断裂时应变(EOS) P 770(Z 方向)', value: 60, unit: UNITS.PERCENT, testMethod: 'ISO 527-1/-2' },
+      { label: '弯曲模量(X/Y/Z 方向)', value: '64/64/69', unit: UNITS.MPA, testMethod: 'ISO 178' },
+      { label: '夏比冲击强度(+23°C)(X/Y/Z 方向)', value: '未断裂', unit: UNITS.KJ_M2, testMethod: 'ISO 179/1eU' },
+      { label: '夏比缺口冲击强度(+23°C)(X/Y/Z 方向)', value: '未断裂', unit: UNITS.KJ_M2, testMethod: 'ISO 179/1eA' },
+      { label: '夏比缺口冲击强度(-30°C)(X/Y/Z 方向)', value: '未断裂', unit: UNITS.KJ_M2, testMethod: 'ISO 179/1eA' },
+      { label: '回弹复原力(X/Y/Z 方向)', value: 62, unit: UNITS.PERCENT, testMethod: 'DIN 53512' },
+      { label: '耐磨性(X/Z 方向)', value: '86/95', unit: UNITS.MM3, testMethod: 'ISO 4649' },
+      { label: '压缩设置(X/Z 方向)', value: '65/72', unit: UNITS.PERCENT, testMethod: 'ISO 815-1/B(24小时 70°C 30 分钟)'	 },
+      { label: '熔化温度', value: 138, unit: UNITS.TEMP, testMethod: 'ISO 11357-1/-3' },
+      { label: '负载 0.45 MPa时的挠度温度(X/Z 方向)', value: '50/52', unit: UNITS.TEMP, testMethod: 'ISO 75-1/-2' },
+      { label: '维卡软化温度(X/Z 方向)', value: 98, unit: UNITS.TEMP, testMethod: 'ISO 306/A120' },
+      ],
+  }
 ];
 
 /**
