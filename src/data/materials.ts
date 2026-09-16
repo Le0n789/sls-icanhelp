@@ -92,7 +92,9 @@ export const UNITS = {
   KN_M: 'kN/m',
   NONE: '',
   MM:'mm',
-  MM3: 'mm³'
+  MM3: 'mm³',
+  UM: 'μm',
+  G_CM3: 'g/cm³'
 } as const;
 
 
@@ -137,8 +139,8 @@ export const MATERIALS_DATA: Material[] = [
       { label: '拉伸强度', value: 54, unit: 'MPa', testMethod: 'ASTM D638' },
       { label: '拉伸模量(X/Y/Z 方向)', value: '1700/1700/1800', unit: 'MPa', testMethod: 'ASTM D638' },
       { label: '屈服伸长率(X/Y/Z 方向)', value: '25/25/20', unit: '%', testMethod: 'ASTM D638' },
-      { label: '断裂延伸率(X/Y/Z 方向)', value: '40/40/30', unit: '%', testMethod: 'ASTM D638' },
-      { label: '冲击强度(X/Y/Z 方向)', value: '7.0/7.0/4.5', unit: 'kJ/m²', testMethod: 'ASTM D638' },
+      { label: '断裂延伸率(X/Y/Z 方向)', value: '40/40/25', unit: '%', testMethod: 'ASTM D638' },
+      { label: '冲击强度(X/Y/Z 方向)', value: '7.0/7.0/4.5', unit: 'kJ/m²', testMethod: 'ASTM D256' },
     ],
   },
 
