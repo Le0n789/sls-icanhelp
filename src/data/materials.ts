@@ -1061,6 +1061,36 @@ export const MATERIALS_DATA: Material[] = [
       { label: '耐磨损耗', value: 90, unit: UNITS.MM3, testMethod: 'ASTM D4060' },
     ],
   },
+
+  {
+    id: '38',
+    name: 'DuraForm FR-106',
+    brand: BRANDS.D3S,
+    baseMaterial: MATERIAL_TYPES.NILONG,
+    density: '1.07',
+    color: '白色',
+    colorType: COLOR_TYPES.BAI,
+    features: '阻燃尼龙 11，可认证通过 FAR 25.853 60 秒垂直燃烧要求，达到火焰、烟雾、毒性(FST)评级，行业标杆阻燃材料，部件坚固耐用、化学耐受性好，性能与标准 PA11 相当',
+    applications: '汽车与航空航天生产件，机壳与外壳，需要强度与精度的复杂薄壁结构件',
+    properties: [
+      { label: '24小时吸水率', value: 0.54, unit: UNITS.PERCENT, testMethod: 'ASTM D570' },
+      { label: '拉伸强度极限', value: 47, unit: UNITS.MPA, testMethod: 'ASTM D638 Type IV' },
+      { label: '屈服拉伸强度', value: 48, unit: UNITS.MPA, testMethod: 'ASTM D638 Type IV' },
+      { label: '拉伸模量', value: 1600, unit: UNITS.MPA, testMethod: 'ASTM D638 Type IV' },
+      { label: '断裂伸长率', value: 27.7, unit: UNITS.PERCENT, testMethod: 'ASTM D638 Type IV' },
+      { label: '屈服伸长率', value: 25, unit: UNITS.PERCENT, testMethod: 'ASTM D638 Type IV' },
+      { label: '弯曲强度', value: 48, unit: UNITS.MPA, testMethod: 'ASTM D790' },
+      { label: '弯曲模量', value: 1300, unit: UNITS.MPA, testMethod: 'ASTM D790' },
+      { label: '伊佐德缺口冲击强度', value: 29, unit: UNITS.J_M, testMethod: 'ASTM D256' },
+      { label: '伊佐德无缺口冲击强度', value: 250, unit: UNITS.J_M, testMethod: 'ASTM D4812' },
+      { label: '邵氏 D 硬度', value: 75, unit: UNITS.NONE, testMethod: 'ASTM D2240' },
+      { label: '玻璃化转变温度(DMA E\"\')', value: 46, unit: UNITS.TEMP, testMethod: 'ASTM E1640' },
+      { label: '负载 0.45 MPa时的挠度温度', value: 189, unit: UNITS.TEMP, testMethod: 'ASTM D648' },
+      { label: '负载 1.82 MPa时的挠度温度', value: 58, unit: UNITS.TEMP, testMethod: 'ASTM D648' },
+      { label: '热膨胀系数(-20~50°C)', value: 119, unit: 'ppm/°C', testMethod: 'ASTM E831' },
+      { label: '热膨胀系数(75~180°C)', value: 218, unit: 'ppm/°C', testMethod: 'ASTM E831' },
+    ],
+  },
 ];
 
 /**
