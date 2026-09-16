@@ -3,7 +3,7 @@ import { ArrowLeft, Search, List, Filter, Info, Box, ChevronDown, Gauge, ArrowUp
 import { useNavigate } from 'react-router';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { MATERIALS_DATA, ALL_BRANDS, ALL_MATERIAL_TYPES } from '../../data/materials';
+import { MATERIALS_DATA, ALL_BRANDS, ALL_MATERIAL_TYPES, COLOR_TYPES } from '../../data/materials';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -255,7 +255,7 @@ export function MaterialDetails() {
                               {/* Color + Density summary */}
                               <div className="flex items-center gap-4 text-sm">
                                 <div className="flex items-center gap-1.5 text-gray-500">
-                                  <span className="inline-block w-3 h-3 rounded-full border border-gray-300" style={{ backgroundColor: material.color === '白色' ? '#f9fafb' : material.color === '浅灰色' ? '#d1d5db' : material.color === '深灰色' ? '#6b7280' : material.color === '金属灰色' ? '#9ca3af' : '#111827' }} />
+                                  <span className="inline-block w-3 h-3 rounded-full border border-gray-300" style={{ backgroundColor: material.colorType === COLOR_TYPES.BAI ? '#f5f5f4' : material.colorType === COLOR_TYPES.HUI ? '#9ca3af' : material.colorType === COLOR_TYPES.HEI ? '#1f2937' : material.colorType === COLOR_TYPES.HUANG ? '#eab308' : material.colorType === COLOR_TYPES.ZONG ? '#92400e' : '#111827' }} />
                                   {material.color}
                                 </div>
                                 <span className="text-gray-300">|</span>
@@ -289,12 +289,19 @@ export function MaterialDetails() {
                                   <div className="flex-1 min-w-0">
                                     <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-2">性能指标</h4>
                                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
-                                      {material.properties.map((prop, idx) => (
+                                      {material.properties.map((prop, idx) => {
+                                        // 数值过长时自动缩小字号，避免溢出小框
+                                        const valueText = String(prop.value);
+                                        const valueSizeClass =
+                                          valueText.length > 18 ? 'text-[11px]'
+                                          : valueText.length > 12 ? 'text-sm'
+                                          : 'text-base';
+                                        return (
                                         <div
                                           key={idx}
                                           className="rounded-lg bg-gray-50 px-3 py-2 text-center border border-gray-100"
                                         >
-                                          <div className="text-base font-bold text-gray-900 leading-none mb-0.5">
+                                          <div className={`${valueSizeClass} font-bold text-gray-900 leading-none mb-0.5 break-all`}>
                                             {prop.value}
                                             <span className="text-[11px] font-normal text-gray-400 ml-0.5">{prop.unit}</span>
                                           </div>
@@ -305,7 +312,8 @@ export function MaterialDetails() {
                                             </div>
                                           )}
                                         </div>
-                                      ))}
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 </div>
