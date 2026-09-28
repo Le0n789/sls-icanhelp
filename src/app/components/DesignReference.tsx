@@ -65,12 +65,12 @@ const DESIGN_DATA: DesignItem[] = [
     notes: '在SLS工艺中，打印件均匀的厚度代表打印时候的热场趋于稳定，零件内部应力处于较低水平不容易出现变形开裂的情况。\
             同时均匀的厚度能够更好的控制尺寸，尼龙打印后会出现收缩的现象，零件尺寸变小，对于均匀的厚度来说，整个零件的缩水更容易预测和控制，\
             同时可以减少局部因收缩导致的凹陷。最后是厚度变化均匀，这样零件内部应力也是均匀过度，避免出现应力集中，进而在应力集中的位置受外力碰撞/自行裂开。',
-    images:[
+    /**images:[
       'designReference/BiHouJunYun-1.webp',
       'designReference/BiHouJunYun-2.webp',
       'designReference/BiHouJunYun-3.webp',
       'designReference/BiHouJunYun-4.webp'
-    ]
+    ]**/
   },
 
   {
